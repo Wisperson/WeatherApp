@@ -20,7 +20,7 @@ namespace WeatherApp
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
 
-            string API = "aa8ef15afb238a27d5d434ae0d7b8de8";
+            string API = "";
             string City = "Almaty";
             string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={API}";
             //WebRequest request = WebRequest.Create(URL);
