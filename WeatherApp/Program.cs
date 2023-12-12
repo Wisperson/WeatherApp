@@ -19,25 +19,13 @@ namespace WeatherApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
-            string API = "";
+            
             string City = "Almaty";
-            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={API}";
-            //WebRequest request = WebRequest.Create(URL);
+            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}";
+            
+            WebRequest request = WebRequest.Create(URL);
 
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    string response = await client.GetStringAsync(URL);
 
-                    Console.WriteLine(response);
-                }
-                catch(HttpRequestException e)
-                {
-                    Console.WriteLine($"Error: {e.Message}");
-                }
-            }
         }
     }
 }
