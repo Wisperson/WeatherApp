@@ -9,7 +9,7 @@ namespace WeatherApp.OpenWeather
 {
     public class Main
     {
-        private double _Temp;
+        /*private double _Temp;
         public double Temp
         {
             get
@@ -20,8 +20,9 @@ namespace WeatherApp.OpenWeather
             {
                 _Temp = value - 273.15;
             }
-        }
-        private double _Temp_min;
+        }*/
+        public double Temp;
+        /*private double _Temp_min;
         public double Temp_min
         {
             get
@@ -32,8 +33,9 @@ namespace WeatherApp.OpenWeather
             {
                 _Temp_min = value - 273.15;
             }
-        }
-        private double _Temp_max;
+        }*/
+        public double Temp_min;
+        /*private double _Temp_max;
         public double Temp_max
         {
             get
@@ -44,8 +46,9 @@ namespace WeatherApp.OpenWeather
             {
                 _Temp_max = value - 273.15;
             }
-        }
-        private double _Feels_like;
+        }*/
+        public double Temp_max;
+        /*private double _Feels_like;
         public double Feels_like
         {
             get
@@ -56,7 +59,8 @@ namespace WeatherApp.OpenWeather
             {
                 _Feels_like = value - 273.15;
             }
-        }
+        }*/
+        public double Feels_like;
         private double _Pressure;
         public double Pressure
         {
@@ -66,7 +70,7 @@ namespace WeatherApp.OpenWeather
             }
             set
             {
-                _Temp = value / 1.3332239;
+                _Pressure = value * 0.75;
             }
         }
         public double Humidity;

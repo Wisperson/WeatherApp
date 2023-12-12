@@ -23,7 +23,7 @@ namespace WeatherApp
         private async void Form1_Load(object sender, EventArgs e)
         {
             string City = "Almaty";
-            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}&units=metric";
+            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}&units=metric&lang=ru";
             WebRequest request = WebRequest.Create(URL);
 
             request.Method = "POST";
@@ -54,7 +54,8 @@ namespace WeatherApp
             label5.Text = "Давление(мм р.с.): " + ((int)OW.Main.Pressure).ToString();
 
             label6.Text = "Скорость(м/с): " + OW.Wind.Speed.ToString();
-            label7.Text = "Направление: " + OW.Wind.Deg.ToString();
+            OW.Wind.SetDegString();
+            label7.Text = "Направление: " + OW.Wind.DegString;
         }
     }
 }
