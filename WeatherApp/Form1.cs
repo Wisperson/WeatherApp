@@ -56,6 +56,36 @@ namespace WeatherApp
             label6.Text = "Скорость(м/с): " + OW.Wind.Speed.ToString();
             OW.Wind.SetDegString();
             label7.Text = "Направление: " + OW.Wind.DegString;
+
+            /*Button helloButton = new Button();
+            helloButton.BackColor = Color.LightGray;
+            helloButton.ForeColor = Color.DarkGray;
+            helloButton.Location = new Point(200, 200);
+            helloButton.Text = "Привет";
+
+            groupBox1.Controls.Add(helloButton);*/
         }
+
+        /*private async void AddWeatherPanel()
+        {
+            string City = "Almaty";
+            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}&units=metric&lang=ru";
+            WebRequest request = WebRequest.Create(URL);
+
+            request.Method = "POST";
+            request.ContentType = "application/x-www.urlencoded";
+            WebResponse response = await request.GetResponseAsync();
+
+            string answer = string.Empty;
+
+            using (Stream s = response.GetResponseStream())
+            {
+                using (StreamReader reader = new StreamReader(s))
+                {
+                    answer = await reader.ReadToEndAsync();
+                }
+            }
+            response.Close();
+        }*/
     }
 }
