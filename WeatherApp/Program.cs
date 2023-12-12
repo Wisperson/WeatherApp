@@ -14,18 +14,11 @@ namespace WeatherApp
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static async Task Main()
+        static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            
-            string City = "Almaty";
-            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}";
-            
-            WebRequest request = WebRequest.Create(URL);
-
-            //bruh
         }
     }
 }

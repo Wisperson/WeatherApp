@@ -58,6 +58,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="OpenWeather\Clouds.cs" />
+    <Compile Include="OpenWeather\Coord.cs" />
+    <Compile Include="OpenWeather\Main.cs" />
+    <Compile Include="OpenWeather\OpenWeather.cs" />
+    <Compile Include="OpenWeather\Sys.cs" />
+    <Compile Include="OpenWeather\Weather.cs" />
+    <Compile Include="OpenWeather\Wind.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Secrets.cs" />

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace WeatherApp
 {
@@ -18,12 +20,28 @@ namespace WeatherApp
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
-            string API = "aa8ef15afb238a27d5d434ae0d7b8de8";
             string City = "Almaty";
-            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={API}";
+            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}";
             WebRequest request = WebRequest.Create(URL);
+
+            request.Method = "POST";
+            request.ContentType = "application/x-www.urlencoded";
+            WebResponse response = await request.GetResponseAsync();
+
+            string answer = string.Empty;
+
+            using(Stream s = response.GetResponseStream())
+            {
+                using(StreamReader reader = new StreamReader(s))
+                {
+                    answer = await reader.ReadToEndAsync();
+                }
+            }
+            response.Close();
+
+            richTextBox1.Text = answer;
         }
     }
 }
