@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Newtonsoft.Json;
 
 namespace WeatherApp.OpenWeather
 {
@@ -12,12 +13,14 @@ namespace WeatherApp.OpenWeather
         public int ID;
         public string Main;
         public string Description;
-        private string _Icon;
+
+        [JsonProperty("icon")]
+        public string _Icon;
         public Bitmap Icon
         {
             get
             {
-                return new Bitmap(Image.FromFile($"icons/{_Icon}.png"));
+                return new Bitmap(Image.FromFile($"icons\\{_Icon}.png"));
             }
         }
     }

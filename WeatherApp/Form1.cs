@@ -23,7 +23,7 @@ namespace WeatherApp
         private async void Form1_Load(object sender, EventArgs e)
         {
             string City = "Almaty";
-            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}";
+            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}&units=metric";
             WebRequest request = WebRequest.Create(URL);
 
             request.Method = "POST";
@@ -42,6 +42,19 @@ namespace WeatherApp
             response.Close();
 
             richTextBox1.Text = answer;
+
+            OpenWeather.OpenWeather OW = JsonConvert.DeserializeObject<OpenWeather.OpenWeather>(answer);
+
+            panel1.BackgroundImage = OW.Weather[0].Icon;
+
+            label1.Text = OW.Weather[0].Main;
+            label2.Text = OW.Weather[0].Description;
+            label3.Text = "Средняя температура(°C): " + OW.Main.Temp.ToString("0.##");
+            label4.Text = "Влажность: " + OW.Main.Humidity.ToString() + "%";
+            label5.Text = "Давление(мм р.с.): " + ((int)OW.Main.Pressure).ToString();
+
+            label6.Text = "Скорость(м/с): " + OW.Wind.Speed.ToString();
+            label7.Text = "Направление: " + OW.Wind.Deg.ToString();
         }
     }
 }

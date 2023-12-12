@@ -11,7 +11,7 @@ namespace WeatherApp.OpenWeather
     {
         public Coord Coord;
 
-        public Weather Weather;
+        public Weather[] Weather;
 
         [JsonProperty("base")]
         public string Base;
