@@ -28,158 +28,173 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.ResponseWriter = new System.Windows.Forms.RichTextBox();
+            this.WeatherPanel = new System.Windows.Forms.GroupBox();
+            this.WindPanel = new System.Windows.Forms.GroupBox();
+            this.WindDegLabel = new System.Windows.Forms.Label();
+            this.WindSpeedLabel = new System.Windows.Forms.Label();
+            this.WeatherPressureLabel = new System.Windows.Forms.Label();
+            this.WeatherHumidityLabel = new System.Windows.Forms.Label();
+            this.WeatherTempLabel = new System.Windows.Forms.Label();
+            this.WeatherDescriptionLabel = new System.Windows.Forms.Label();
+            this.WeatherNameLabel = new System.Windows.Forms.Label();
+            this.ImagePanel = new System.Windows.Forms.Panel();
+            this.WeatherScrollPanel = new System.Windows.Forms.Panel();
+            this.WeatherPanel.SuspendLayout();
+            this.WindPanel.SuspendLayout();
+            this.WeatherScrollPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // ResponseWriter
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(776, 151);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.ResponseWriter.Location = new System.Drawing.Point(418, 19);
+            this.ResponseWriter.Name = "ResponseWriter";
+            this.ResponseWriter.ReadOnly = true;
+            this.ResponseWriter.Size = new System.Drawing.Size(354, 430);
+            this.ResponseWriter.TabIndex = 0;
+            this.ResponseWriter.Text = "";
             // 
-            // groupBox1
+            // WeatherPanel
             // 
-            this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 169);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 269);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Погода";
+            this.WeatherPanel.Controls.Add(this.WindPanel);
+            this.WeatherPanel.Controls.Add(this.WeatherPressureLabel);
+            this.WeatherPanel.Controls.Add(this.WeatherHumidityLabel);
+            this.WeatherPanel.Controls.Add(this.WeatherTempLabel);
+            this.WeatherPanel.Controls.Add(this.WeatherDescriptionLabel);
+            this.WeatherPanel.Controls.Add(this.WeatherNameLabel);
+            this.WeatherPanel.Controls.Add(this.ImagePanel);
+            this.WeatherPanel.Location = new System.Drawing.Point(0, 0);
+            this.WeatherPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.WeatherPanel.Name = "WeatherPanel";
+            this.WeatherPanel.Size = new System.Drawing.Size(400, 180);
+            this.WeatherPanel.TabIndex = 1;
+            this.WeatherPanel.TabStop = false;
+            this.WeatherPanel.Text = "Погода";
             // 
-            // panel1
+            // WindPanel
             // 
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(6, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(90, 90);
-            this.panel1.TabIndex = 0;
+            this.WindPanel.Controls.Add(this.WindDegLabel);
+            this.WindPanel.Controls.Add(this.WindSpeedLabel);
+            this.WindPanel.Location = new System.Drawing.Point(7, 116);
+            this.WindPanel.Name = "WindPanel";
+            this.WindPanel.Size = new System.Drawing.Size(200, 58);
+            this.WindPanel.TabIndex = 6;
+            this.WindPanel.TabStop = false;
+            this.WindPanel.Text = "Ветер";
             // 
-            // label1
+            // WindDegLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(103, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.WindDegLabel.AutoSize = true;
+            this.WindDegLabel.Location = new System.Drawing.Point(7, 37);
+            this.WindDegLabel.Name = "WindDegLabel";
+            this.WindDegLabel.Size = new System.Drawing.Size(35, 13);
+            this.WindDegLabel.TabIndex = 1;
+            this.WindDegLabel.Text = "label7";
             // 
-            // label2
+            // WindSpeedLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(103, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "label2";
+            this.WindSpeedLabel.AutoSize = true;
+            this.WindSpeedLabel.Location = new System.Drawing.Point(7, 20);
+            this.WindSpeedLabel.Name = "WindSpeedLabel";
+            this.WindSpeedLabel.Size = new System.Drawing.Size(35, 13);
+            this.WindSpeedLabel.TabIndex = 0;
+            this.WindSpeedLabel.Text = "label6";
             // 
-            // label3
+            // WeatherPressureLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(103, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "label3";
+            this.WeatherPressureLabel.AutoSize = true;
+            this.WeatherPressureLabel.Location = new System.Drawing.Point(103, 88);
+            this.WeatherPressureLabel.Name = "WeatherPressureLabel";
+            this.WeatherPressureLabel.Size = new System.Drawing.Size(35, 13);
+            this.WeatherPressureLabel.TabIndex = 5;
+            this.WeatherPressureLabel.Text = "label5";
             // 
-            // label4
+            // WeatherHumidityLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(103, 71);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "label4";
+            this.WeatherHumidityLabel.AutoSize = true;
+            this.WeatherHumidityLabel.Location = new System.Drawing.Point(103, 71);
+            this.WeatherHumidityLabel.Name = "WeatherHumidityLabel";
+            this.WeatherHumidityLabel.Size = new System.Drawing.Size(35, 13);
+            this.WeatherHumidityLabel.TabIndex = 4;
+            this.WeatherHumidityLabel.Text = "label4";
             // 
-            // label5
+            // WeatherTempLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(103, 88);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "label5";
+            this.WeatherTempLabel.AutoSize = true;
+            this.WeatherTempLabel.Location = new System.Drawing.Point(103, 54);
+            this.WeatherTempLabel.Name = "WeatherTempLabel";
+            this.WeatherTempLabel.Size = new System.Drawing.Size(35, 13);
+            this.WeatherTempLabel.TabIndex = 3;
+            this.WeatherTempLabel.Text = "label3";
             // 
-            // groupBox2
+            // WeatherDescriptionLabel
             // 
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(7, 116);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 100);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Ветер";
+            this.WeatherDescriptionLabel.AutoSize = true;
+            this.WeatherDescriptionLabel.Location = new System.Drawing.Point(103, 37);
+            this.WeatherDescriptionLabel.Name = "WeatherDescriptionLabel";
+            this.WeatherDescriptionLabel.Size = new System.Drawing.Size(35, 13);
+            this.WeatherDescriptionLabel.TabIndex = 2;
+            this.WeatherDescriptionLabel.Text = "label2";
             // 
-            // label6
+            // WeatherNameLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "label6";
+            this.WeatherNameLabel.AutoSize = true;
+            this.WeatherNameLabel.Location = new System.Drawing.Point(103, 20);
+            this.WeatherNameLabel.Name = "WeatherNameLabel";
+            this.WeatherNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.WeatherNameLabel.TabIndex = 1;
+            this.WeatherNameLabel.Text = "label1";
             // 
-            // label7
+            // ImagePanel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 37);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "label7";
+            this.ImagePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ImagePanel.Location = new System.Drawing.Point(6, 19);
+            this.ImagePanel.Name = "ImagePanel";
+            this.ImagePanel.Size = new System.Drawing.Size(90, 90);
+            this.ImagePanel.TabIndex = 0;
+            // 
+            // WeatherScrollPanel
+            // 
+            this.WeatherScrollPanel.AutoScroll = true;
+            this.WeatherScrollPanel.Controls.Add(this.WeatherPanel);
+            this.WeatherScrollPanel.Location = new System.Drawing.Point(12, 16);
+            this.WeatherScrollPanel.Name = "WeatherScrollPanel";
+            this.WeatherScrollPanel.Size = new System.Drawing.Size(400, 433);
+            this.WeatherScrollPanel.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.richTextBox1);
+            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.Controls.Add(this.WeatherScrollPanel);
+            this.Controls.Add(this.ResponseWriter);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.WeatherPanel.ResumeLayout(false);
+            this.WeatherPanel.PerformLayout();
+            this.WindPanel.ResumeLayout(false);
+            this.WindPanel.PerformLayout();
+            this.WeatherScrollPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox ResponseWriter;
+        private System.Windows.Forms.GroupBox WeatherPanel;
+        private System.Windows.Forms.Panel ImagePanel;
+        private System.Windows.Forms.GroupBox WindPanel;
+        private System.Windows.Forms.Label WindDegLabel;
+        private System.Windows.Forms.Label WindSpeedLabel;
+        private System.Windows.Forms.Label WeatherPressureLabel;
+        private System.Windows.Forms.Label WeatherHumidityLabel;
+        private System.Windows.Forms.Label WeatherTempLabel;
+        private System.Windows.Forms.Label WeatherDescriptionLabel;
+        private System.Windows.Forms.Label WeatherNameLabel;
+        private System.Windows.Forms.Panel WeatherScrollPanel;
     }
 }
 

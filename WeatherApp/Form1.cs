@@ -24,15 +24,18 @@ namespace WeatherApp
         {
             string City = "Almaty";
             string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}&units=metric&lang=ru";
+            WebRequest request;
+            WebResponse response;
+            string answer = string.Empty;
             try
             {
-                WebRequest request = WebRequest.Create(URL);
+                request = WebRequest.Create(URL);
 
                 request.Method = "POST";
                 request.ContentType = "application/x-www.urlencoded";
-                WebResponse response = await request.GetResponseAsync();
+                response = await request.GetResponseAsync();
 
-                string answer = string.Empty;
+                answer = string.Empty;
 
                 using (Stream s = response.GetResponseStream())
                 {
@@ -43,29 +46,30 @@ namespace WeatherApp
                 }
                 response.Close();
 
-                richTextBox1.Text = answer;
+                ResponseWriter.Text = answer;
 
                 OpenWeather.OpenWeather OW = JsonConvert.DeserializeObject<OpenWeather.OpenWeather>(answer);
 
-                panel1.BackgroundImage = OW.Weather[0].Icon;
+                ImagePanel.BackgroundImage = OW.Weather[0].Icon;
 
-                label1.Text = OW.Weather[0].Main;
-                label2.Text = OW.Weather[0].Description;
-                label3.Text = "Средняя температура(°C): " + OW.Main.Temp.ToString("0.##");
-                label4.Text = "Влажность: " + OW.Main.Humidity.ToString() + "%";
-                label5.Text = "Давление(мм р.с.): " + ((int)OW.Main.Pressure).ToString();
+                WeatherNameLabel.Text = OW.Weather[0].Main;
+                WeatherDescriptionLabel.Text = OW.Weather[0].Description;
+                WeatherTempLabel.Text = "Средняя температура(°C): " + OW.Main.Temp.ToString("0.##");
+                WeatherHumidityLabel.Text = "Влажность: " + OW.Main.Humidity.ToString() + "%";
+                WeatherPressureLabel.Text = "Давление(мм р.с.): " + ((int)OW.Main.Pressure).ToString();
 
-                label6.Text = "Скорость(м/с): " + OW.Wind.Speed.ToString();
+                WindSpeedLabel.Text = "Скорость(м/с): " + OW.Wind.Speed.ToString();
                 OW.Wind.SetDegString();
-                label7.Text = "Направление: " + OW.Wind.DegString;
+                WindDegLabel.Text = "Направление: " + OW.Wind.DegString;
             }
             catch (System.Net.WebException ex)
             {
-                richTextBox1.Text = "Проблема с интернетом";
+                ResponseWriter.Text = "Проблема с интернетом";
             }
             catch
             {
-                richTextBox1.Text = "Возникла проблема";
+                ResponseWriter.Text = "Возникла проблема";
+                ResponseWriter.Text = answer;
             }
            
 
@@ -78,7 +82,7 @@ namespace WeatherApp
             groupBox1.Controls.Add(helloButton);*/
         }
 
-        /*private async void AddWeatherPanel()
+        /*private async void AddWeatherBlock()
         {
             string City = "Almaty";
             string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}&units=metric&lang=ru";
@@ -99,5 +103,43 @@ namespace WeatherApp
             }
             response.Close();
         }*/
+
+        public class WeatherBlock
+        {
+            static int ID = 1;
+            private string City;
+            private GroupBox WeatherPanel;
+            private Panel ImagePanel;
+            private GroupBox WindPanel;
+            private Label WindDegLabel;
+            private Label WindSpeedLabel;
+            private Label WeatherPressureLabel;
+            private Label WeatherHumidityLabel;
+            private Label WeatherTempLabel;
+            private Label WeatherDescriptionLabel;
+            private Label WeatherNameLabel;
+
+            private TextBox CityTextBox;
+            private Button InitializeWeatherPanelButton;
+
+            WeatherBlock(int y, Panel WeatherScrollPanel)
+            {
+                WeatherPanel.Controls.Add(WindPanel);
+                WeatherPanel.Controls.Add(WeatherPressureLabel);
+                WeatherPanel.Controls.Add(WeatherHumidityLabel);
+                WeatherPanel.Controls.Add(WeatherTempLabel);
+                WeatherPanel.Controls.Add(WeatherDescriptionLabel);
+                WeatherPanel.Controls.Add(WeatherNameLabel);
+                WeatherPanel.Controls.Add(ImagePanel);
+
+                WeatherPanel.Location = new Point(0, y);
+                WeatherPanel.Margin = new Padding(0);
+                WeatherPanel.Name = "WeatherPanel" + ID++;
+                WeatherPanel.Size = new Size(400, 180);
+                WeatherPanel.TabIndex = 1;
+                WeatherPanel.TabStop = false;
+                WeatherPanel.Text = "Погода " + City;
+            }
+        }
     }
 }
