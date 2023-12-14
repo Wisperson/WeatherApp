@@ -27,6 +27,11 @@ namespace WeatherApp
             WebRequest request;
             WebResponse response;
             string answer = string.Empty;
+
+            int AvailableY = 200;
+            List<WeatherBlock> Blocks = new List<WeatherBlock>();
+            Blocks.Add(new WeatherBlock(ref AvailableY, WeatherScrollPanel));
+            Blocks.Add(new WeatherBlock(ref AvailableY, WeatherScrollPanel));
             try
             {
                 request = WebRequest.Create(URL);
@@ -71,38 +76,7 @@ namespace WeatherApp
                 ResponseWriter.Text = "Возникла проблема";
                 ResponseWriter.Text = answer;
             }
-           
-
-            /*Button helloButton = new Button();
-            helloButton.BackColor = Color.LightGray;
-            helloButton.ForeColor = Color.DarkGray;
-            helloButton.Location = new Point(200, 200);
-            helloButton.Text = "Привет";
-
-            groupBox1.Controls.Add(helloButton);*/
         }
-
-        /*private async void AddWeatherBlock()
-        {
-            string City = "Almaty";
-            string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}&units=metric&lang=ru";
-            WebRequest request = WebRequest.Create(URL);
-
-            request.Method = "POST";
-            request.ContentType = "application/x-www.urlencoded";
-            WebResponse response = await request.GetResponseAsync();
-
-            string answer = string.Empty;
-
-            using (Stream s = response.GetResponseStream())
-            {
-                using (StreamReader reader = new StreamReader(s))
-                {
-                    answer = await reader.ReadToEndAsync();
-                }
-            }
-            response.Close();
-        }*/
 
         public class WeatherBlock
         {
@@ -122,7 +96,7 @@ namespace WeatherApp
             private TextBox CityTextBox;
             private Button InitializeWeatherPanelButton;
 
-            WeatherBlock(ref int y, Panel WeatherScrollPanel)
+            public WeatherBlock(ref int y, Panel WeatherScrollPanel)
             {
                 //Initializing elements in WeatherBlock
                 WeatherPanel = new GroupBox();
@@ -230,12 +204,16 @@ namespace WeatherApp
                 ImagePanel.Size = new Size(90, 90);
                 ImagePanel.TabIndex = 0;
 
+                WeatherScrollPanel.Controls.Add(WeatherPanel);
+
                 //Resuming layouts
                 WeatherPanel.ResumeLayout(false);
                 WeatherPanel.PerformLayout();
                 WindPanel.ResumeLayout(false);
                 WindPanel.PerformLayout();
                 WeatherScrollPanel.ResumeLayout(false);
+
+                y += 200;
             }
         }
     }
