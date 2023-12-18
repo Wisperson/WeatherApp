@@ -30,6 +30,7 @@
         {
             this.ResponseWriter = new System.Windows.Forms.RichTextBox();
             this.WeatherPanel = new System.Windows.Forms.GroupBox();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.WindPanel = new System.Windows.Forms.GroupBox();
             this.WindDegLabel = new System.Windows.Forms.Label();
             this.WindSpeedLabel = new System.Windows.Forms.Label();
@@ -40,6 +41,8 @@
             this.WeatherNameLabel = new System.Windows.Forms.Label();
             this.ImagePanel = new System.Windows.Forms.Panel();
             this.WeatherScrollPanel = new System.Windows.Forms.Panel();
+            this.CityTextBox = new System.Windows.Forms.TextBox();
+            this.InitializeWeatherPanelButton = new System.Windows.Forms.Button();
             this.WeatherPanel.SuspendLayout();
             this.WindPanel.SuspendLayout();
             this.WeatherScrollPanel.SuspendLayout();
@@ -56,6 +59,9 @@
             // 
             // WeatherPanel
             // 
+            this.WeatherPanel.Controls.Add(this.InitializeWeatherPanelButton);
+            this.WeatherPanel.Controls.Add(this.CityTextBox);
+            this.WeatherPanel.Controls.Add(this.CloseButton);
             this.WeatherPanel.Controls.Add(this.WindPanel);
             this.WeatherPanel.Controls.Add(this.WeatherPressureLabel);
             this.WeatherPanel.Controls.Add(this.WeatherHumidityLabel);
@@ -66,10 +72,19 @@
             this.WeatherPanel.Location = new System.Drawing.Point(0, 0);
             this.WeatherPanel.Margin = new System.Windows.Forms.Padding(0);
             this.WeatherPanel.Name = "WeatherPanel";
-            this.WeatherPanel.Size = new System.Drawing.Size(400, 180);
+            this.WeatherPanel.Size = new System.Drawing.Size(380, 180);
             this.WeatherPanel.TabIndex = 1;
             this.WeatherPanel.TabStop = false;
             this.WeatherPanel.Text = "Погода";
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.Location = new System.Drawing.Point(349, 14);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(25, 25);
+            this.CloseButton.TabIndex = 7;
+            this.CloseButton.Text = "X";
+            this.CloseButton.UseVisualStyleBackColor = true;
             // 
             // WindPanel
             // 
@@ -162,6 +177,23 @@
             this.WeatherScrollPanel.Size = new System.Drawing.Size(400, 433);
             this.WeatherScrollPanel.TabIndex = 2;
             // 
+            // CityTextBox
+            // 
+            this.CityTextBox.Location = new System.Drawing.Point(210, 19);
+            this.CityTextBox.Name = "CityTextBox";
+            this.CityTextBox.Size = new System.Drawing.Size(100, 20);
+            this.CityTextBox.TabIndex = 8;
+            this.CityTextBox.Text = "City name here";
+            // 
+            // InitializeWeatherPanelButton
+            // 
+            this.InitializeWeatherPanelButton.Location = new System.Drawing.Point(235, 44);
+            this.InitializeWeatherPanelButton.Name = "InitializeWeatherPanelButton";
+            this.InitializeWeatherPanelButton.Size = new System.Drawing.Size(75, 23);
+            this.InitializeWeatherPanelButton.TabIndex = 9;
+            this.InitializeWeatherPanelButton.Text = "Start";
+            this.InitializeWeatherPanelButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,6 +227,9 @@
         private System.Windows.Forms.Label WeatherDescriptionLabel;
         private System.Windows.Forms.Label WeatherNameLabel;
         private System.Windows.Forms.Panel WeatherScrollPanel;
+        private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Button InitializeWeatherPanelButton;
+        private System.Windows.Forms.TextBox CityTextBox;
     }
 }
 
