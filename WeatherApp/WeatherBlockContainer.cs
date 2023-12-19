@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -26,10 +27,11 @@ namespace WeatherApp
 
         private TextBox CityTextBox;
         private Button InitializeWeatherPanelButton;
+        private Label ErrorLabel;
 
         private Panel WeatherScrollPanel;
 
-        public WeatherBlock(ref int y, Panel WeatherScrollPanel)
+        public WeatherBlock(int y, Panel WeatherScrollPanel)
         {
             //Initializing elements in WeatherBlock
             WeatherPanel = new GroupBox();
@@ -47,6 +49,7 @@ namespace WeatherApp
 
             CityTextBox = new TextBox();
             InitializeWeatherPanelButton = new Button();
+            ErrorLabel = new Label();
 
             //Suspending layouts to increase app perfomance
             WeatherScrollPanel.SuspendLayout();
@@ -64,6 +67,7 @@ namespace WeatherApp
             WeatherPanel.Controls.Add(CloseButton);
             WeatherPanel.Controls.Add(CityTextBox);
             WeatherPanel.Controls.Add(InitializeWeatherPanelButton);
+            WeatherPanel.Controls.Add(ErrorLabel);
             WeatherPanel.Location = new Point(0, y);
             WeatherPanel.Margin = new Padding(0);
             WeatherPanel.Name = "WeatherPanel" + ID++;
@@ -71,6 +75,14 @@ namespace WeatherApp
             WeatherPanel.TabIndex = 1;
             WeatherPanel.TabStop = false;
             WeatherPanel.Text = "Погода " + City;
+
+            //ErrorLabel config
+            ErrorLabel.AutoSize = true;
+            ErrorLabel.Location = new Point(274, 71);
+            ErrorLabel.Name = "ErrorLabel";
+            ErrorLabel.Size = new Size(35, 13);
+            ErrorLabel.TabIndex = 10;
+            ErrorLabel.Text = "label1";
 
             //CityTextBox config
             CityTextBox.Location = new Point(210, 19);
@@ -197,47 +209,68 @@ namespace WeatherApp
             WindPanel.ResumeLayout(false);
             WindPanel.PerformLayout();
             WeatherScrollPanel.ResumeLayout(false);
-
-            y += 200;
         }
 
-        private void InitializeWeatherPanel(object sender, EventArgs e)
+        private async void InitializeWeatherPanel(object sender, EventArgs e)
         {
-            WeatherPanel.SuspendLayout();
-            WindPanel.SuspendLayout();
+            WebRequestResult result = new WebRequestResult();
+            await result.Init(CityTextBox.Text);
+            if (result.IsSuccess)
+            {
+                WeatherPanel.SuspendLayout();
+                WindPanel.SuspendLayout();
 
-            string City = CityTextBox.Text;
+                InitializeWeatherPanelButton.Enabled = false;
+                InitializeWeatherPanelButton.Visible = false;
+                CityTextBox.Enabled = false;
+                CityTextBox.Visible = false;
+                ErrorLabel.Enabled = false;
+                ErrorLabel.Visible = false;
 
-            InitializeWeatherPanelButton.Enabled = false;
-            InitializeWeatherPanelButton.Visible = false;
-            CityTextBox.Enabled = false;
-            CityTextBox.Visible = false;
+                CloseButton.Enabled = true;
+                CloseButton.Visible = true;
+                WindPanel.Enabled = true;
+                WindPanel.Visible = true;
+                WindDegLabel.Enabled = true;
+                WindDegLabel.Visible = true;
+                WindSpeedLabel.Enabled = true;
+                WindSpeedLabel.Visible = true;
+                WeatherPressureLabel.Enabled = true;
+                WeatherPressureLabel.Visible = true;
+                WeatherHumidityLabel.Enabled = true;
+                WeatherHumidityLabel.Visible = true;
+                WeatherTempLabel.Enabled = true;
+                WeatherTempLabel.Visible = true;
+                WeatherDescriptionLabel.Enabled = true;
+                WeatherDescriptionLabel.Visible = true;
+                WeatherNameLabel.Enabled = true;
+                WeatherNameLabel.Visible = true;
+                ImagePanel.Enabled = true;
+                ImagePanel.Visible = true;
 
-            CloseButton.Enabled = true;
-            CloseButton.Visible = true;
-            WindPanel.Enabled = true;
-            WindPanel.Visible = true;
-            WindDegLabel.Enabled = true;
-            WindDegLabel.Visible = true;
-            WindSpeedLabel.Enabled = true;
-            WindSpeedLabel.Visible = true;
-            WeatherPressureLabel.Enabled = true;
-            WeatherPressureLabel.Visible = true;
-            WeatherHumidityLabel.Enabled = true;
-            WeatherHumidityLabel.Visible = true;
-            WeatherTempLabel.Enabled = true;
-            WeatherTempLabel.Visible = true;
-            WeatherDescriptionLabel.Enabled = true;
-            WeatherDescriptionLabel.Visible = true;
-            WeatherNameLabel.Enabled = true;
-            WeatherNameLabel.Visible = true;
-            ImagePanel.Enabled = true;
-            ImagePanel.Visible = true;
+                OpenWeather.OpenWeather OW = JsonConvert.DeserializeObject<OpenWeather.OpenWeather>(result.Message);
 
-            WeatherPanel.ResumeLayout(false);
-            WeatherPanel.PerformLayout();
-            WindPanel.ResumeLayout(false);
-            WindPanel.PerformLayout();
+                ImagePanel.BackgroundImage = OW.Weather[0].Icon;
+
+                WeatherNameLabel.Text = OW.Weather[0].Main;
+                WeatherDescriptionLabel.Text = OW.Weather[0].Description;
+                WeatherTempLabel.Text = "Средняя температура(°C): " + OW.Main.Temp.ToString("0.##");
+                WeatherHumidityLabel.Text = "Влажность: " + OW.Main.Humidity.ToString() + "%";
+                WeatherPressureLabel.Text = "Давление(мм р.с.): " + ((int)OW.Main.Pressure).ToString();
+
+                WindSpeedLabel.Text = "Скорость(м/с): " + OW.Wind.Speed.ToString();
+                OW.Wind.SetDegString();
+                WindDegLabel.Text = "Направление: " + OW.Wind.DegString;
+
+                WeatherPanel.ResumeLayout(false);
+                WeatherPanel.PerformLayout();
+                WindPanel.ResumeLayout(false);
+                WindPanel.PerformLayout();
+            }
+            else
+            {
+                ErrorLabel.Text = result.Message;
+            }
         }
     }
 }

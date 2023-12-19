@@ -8,9 +8,18 @@ using System.Threading.Tasks;
 
 namespace WeatherApp
 {
-    public class WebLogic
+    public class WebRequestResult
     {
-        public async static Task<WebRequestResult> GetWebRequestResult(string City)
+        public bool IsSuccess { get; set; }
+        public string Message { get; set; }
+        public WebRequestResult() { }
+
+        public async Task Init(string City)
+        {
+            await GetWebRequestResult(City);
+        }
+
+        private async Task GetWebRequestResult(string City)
         {
             string URL = $"http://api.openweathermap.org/data/2.5/weather?q={City}&appid={Secrets.API}&units=metric&lang=ru";
             WebRequest request;
@@ -21,14 +30,10 @@ namespace WeatherApp
                 request = WebRequest.Create(URL);
                 request.Method = "POST";
                 request.ContentType = "application/x-www.urlencoded";
-
-                Task<WebResponse> ResponseTask = request.GetResponseAsync();
-                Task TimeoutTask = Task.Delay(TimeSpan.FromSeconds(5));
-                Task ComplitedTask = Task.WhenAny(ResponseTask, TimeoutTask);
-
-                if (ComplitedTask == ResponseTask)
+               
+                try
                 {
-                    response = await ResponseTask;
+                    response = await request.GetResponseAsync();
                     using (Stream s = response.GetResponseStream())
                     {
                         using (StreamReader reader = new StreamReader(s))
@@ -37,29 +42,22 @@ namespace WeatherApp
                         }
                     }
                     response.Close();
-                    return new WebRequestResult(true, answer);
+                    IsSuccess = true;
+                    Message = answer;
+                    return;
                 }
-                else
+                catch
                 {
-                    return new WebRequestResult(false, "Couldn't connect to OpenWeatherMap.org");
+                    IsSuccess = false;
+                    Message = "Request timeout";
+                    return;
                 }
             }
             catch
             {
-                return new WebRequestResult(false, "Net Error");
-            }
-
-
-        }
-
-        public class WebRequestResult
-        {
-            public bool IsSuccess { get; set; }
-            public string Message { get; set; }
-            public WebRequestResult(bool IsSuccess, string Message)
-            {
-                this.IsSuccess = IsSuccess;
-                this.Message = Message;
+                IsSuccess = false;
+                Message = "Net Error";
+                return;
             }
         }
     }
